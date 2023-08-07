@@ -2410,6 +2410,8 @@ function DiscordLib:Window(text)
 				GlowBubble.ScaleType = Enum.ScaleType.Slice
 				GlowBubble.SliceCenter = Rect.new(20, 20, 280, 280)
 
+				local mult = 10^2
+
 				ValueLabel.Name = "ValueLabel"
 				ValueLabel.Parent = ValueBubble
 				ValueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2420,7 +2422,7 @@ function DiscordLib:Window(text)
 				ValueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ValueLabel.TextSize = 10.000
 
-				local mult = 10^2
+				
 
 				local function move(input)
 					local pos =
