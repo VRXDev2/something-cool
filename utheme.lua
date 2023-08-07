@@ -2416,9 +2416,12 @@ function DiscordLib:Window(text)
 				ValueLabel.BackgroundTransparency = 1.000
 				ValueLabel.Size = UDim2.new(0, 36, 0, 21)
 				ValueLabel.Font = Enum.Font.Gotham
-				ValueLabel.Text = tostring(start and ((start / max) * (max - min) + min) or 0)
+				ValueLabel.Text = tostring(start and math.floor((((start / max) * (max - min) + min) * mult + 0.5) / mult) or 0)
 				ValueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ValueLabel.TextSize = 10.000
+
+				local mult = 10^2
+
 				local function move(input)
 					local pos =
 						UDim2.new(
@@ -2436,7 +2439,7 @@ function DiscordLib:Window(text)
 						)
 					CurrentValueFrame.Size = pos1
 					Zip.Position = pos
-					local value = (((pos.X.Scale * max) / max) * (max - min) + min)
+					local value = math.floor((((pos.X.Scale * max) / max) * (max - min) + min) * mult + 0.5) / mult --(((pos.X.Scale * max) / max) * (max - min) + min)
 					ValueLabel.Text = tostring(value)
 					pcall(callback, value)
 				end
@@ -2467,7 +2470,7 @@ function DiscordLib:Window(text)
 				function SliderFunc:Change(tochange)
 					CurrentValueFrame.Size = UDim2.new((tochange or 0) / max, 0, 0, 8)
 					Zip.Position = UDim2.new((tochange or 0)/max, -6,-0.644999981, 0)
-					ValueLabel.Text = tostring(tochange and ((tochange / max) * (max - min) + min) or 0)
+					ValueLabel.Text = tostring(tochange and math.floor((((tochange / max) * (max - min) + min) * mult + 0.5) / mult) or 0)
 					pcall(callback, tochange)
 				end
 				
